@@ -1,0 +1,29 @@
+{
+    "dependencies": [],
+    "singleton": true,
+    "category": "scheduling",
+    "author": "Maroš Kollár",
+    "homepage": "http://k-1.com",
+    "icon": "icon.png",
+    "version": "1.00",
+    "maturity": "stable",
+    "moduleName": "Season",
+    "repository": {
+        "type": "git",
+        "source": "https://github.com/maros/Zway-Season"
+    },
+    "defaults": {
+        "title": "__title__",
+        "description": "__description__"
+    },
+    "schema": {
+        "type": "object",
+        "properties": {
+        },
+        "required": true
+    },
+    "options": {
+        "fields": {
+        }
+    }
+}
