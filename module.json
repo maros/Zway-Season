@@ -19,11 +19,51 @@
     "schema": {
         "type": "object",
         "properties": {
+            "spring": {
+                "type": "string",
+                "default": "03/15",
+                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
+            },
+            "summer": {
+                "type": "string",
+                "default": "05/30",
+                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
+            },
+            "fall": {
+                "type": "string",
+                "default": "09/15",
+                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
+            },
+            "winter": {
+                "type": "string",
+                "default": "11/30",
+                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
+            }
         },
         "required": true
     },
     "options": {
         "fields": {
+            "spring": {
+                "label": "__spring_label__",
+                "placeholder": "__season_placeholder__",
+                "helper": "__spring_helper__"
+            },
+            "summer": {
+                "label": "__summer_label__",
+                "placeholder": "__season_placeholder__",
+                "helper": "__summer_helper__"
+            },
+            "fall": {
+                "label": "__fall_label__",
+                "placeholder": "__season_placeholder__",
+                "helper": "__fall_helper__"
+            },
+            "winter": {
+                "label": "__winter_label__",
+                "placeholder": "__season_placeholder__",
+                "helper": "__winter_helper__"
+            }
         }
     }
 }
