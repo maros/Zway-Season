@@ -36,16 +36,21 @@ Season.prototype.init = function (config) {
             metrics: {
                 title: langFile.title,
                 level: 'off',
+                season: self.calculateSeason()
             }
         },
         overlay: {
             deviceType: 'toggleButton'
         },
         handler: function(command) {
-            console.log('CALLED SEASON '+command);
+            if (command === 'on') {
+                self.vDev.set('metrics:level','on');
+                self.switchSeason();
+            }
         },
         moduleId: this.id
     });
+    
     
 
 };
@@ -66,3 +71,39 @@ Season.prototype.stop = function () {
 // --- Module methods
 // ----------------------------------------------------------------------------
 
+Season.prototype.seasons = ['spring','summer','fall','winter'];
+
+Season.prototype.switchSeason = function (season) {
+    var self = this;
+    console.log('CALLED SEASON '+season);
+};
+
+Season.prototype.calculateSeason = function () {
+    var self = this;
+    
+    var dateNow     = new Date();
+    var dateRe      = /^(\d+)\/(\d+)$/;
+    var seasons     = [];
+    var calcSeason;
+    
+    _.each(self.seasons,function(season) {
+        
+        var seasonStart = self.config[season];
+        if (typeof(seasonStart) === 'string'
+            && seasonStart !== '') {
+            var match = dateRe.exec(seasonStart);
+            var dateCompare = new Date(dateNow.getFullYear(), match[0], match[1], 0, 0, 0, 0);
+            if (typeof(calcSeason) === 'undefined' 
+                && dateNow <= dateCompare) {
+                calcSeason = season;
+                seasons.push(season);
+            }
+        }
+    });
+    
+    console.logJS(seasons);
+    console.log(calcSeason);
+    
+    
+    return calcSeason;
+};
