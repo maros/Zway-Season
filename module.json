@@ -1,71 +1,71 @@
 {
-    "dependencies": [],
-    "singleton": true,
-    "category": "scheduling",
-    "author": "Maroš Kollár",
-    "homepage": "http://k-1.com",
-    "icon": "icon.png",
-    "version": "1.00",
-    "maturity": "stable",
-    "moduleName": "Season",
-    "repository": {
-        "type": "git",
-        "source": "https://github.com/maros/Zway-Season"
-    },
-    "defaults": {
-        "title": "__title__",
-        "description": "__description__"
-    },
-    "schema": {
-        "type": "object",
-        "properties": {
-            "spring": {
-                "type": "string",
-                "default": "03/15",
-                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
-            },
-            "summer": {
-                "type": "string",
-                "default": "05/30",
-                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
-                "required": true
-            },
-            "autumn": {
-                "type": "string",
-                "default": "09/15",
-                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
-            },
-            "winter": {
-                "type": "string",
-                "default": "11/30",
-                "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
-                "required": true
-            }
-        },
-        "required": true
-    },
-    "options": {
-        "fields": {
-            "spring": {
-                "label": "__spring_label__",
-                "placeholder": "__season_placeholder__",
-                "helper": "__season_helper__"
-            },
-            "summer": {
-                "label": "__summer_label__",
-                "placeholder": "__season_placeholder__",
-                "helper": "__season_helper__"
-            },
-            "autumn": {
-                "label": "__autumn_label__",
-                "placeholder": "__season_placeholder__",
-                "helper": "__season_helper__"
-            },
-            "winter": {
-                "label": "__winter_label__",
-                "placeholder": "__season_placeholder__",
-                "helper": "__season_helper__"
-            }
-        }
-    }
+   "author" : "Maroš Kollár",
+   "category" : "scheduling",
+   "defaults" : {
+      "description" : "__description__",
+      "title" : "__title__"
+   },
+   "dependencies" : [],
+   "homepage" : "http://k-1.com",
+   "icon" : "icon.png",
+   "maturity" : "stable",
+   "moduleName" : "Season",
+   "options" : {
+      "fields" : {
+         "autumn" : {
+            "helper" : "__season_helper__",
+            "label" : "__autumn_label__",
+            "placeholder" : "__season_placeholder__"
+         },
+         "spring" : {
+            "helper" : "__season_helper__",
+            "label" : "__spring_label__",
+            "placeholder" : "__season_placeholder__"
+         },
+         "summer" : {
+            "helper" : "__season_helper__",
+            "label" : "__summer_label__",
+            "placeholder" : "__season_placeholder__"
+         },
+         "winter" : {
+            "helper" : "__season_helper__",
+            "label" : "__winter_label__",
+            "placeholder" : "__season_placeholder__"
+         }
+      }
+   },
+   "repository" : {
+      "source" : "https://github.com/maros/Zway-Season",
+      "type" : "git"
+   },
+   "schema" : {
+      "properties" : {
+         "autumn" : {
+            "default" : "09/15",
+            "pattern" : "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
+            "type" : "string"
+         },
+         "spring" : {
+            "default" : "03/15",
+            "pattern" : "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
+            "type" : "string"
+         },
+         "summer" : {
+            "default" : "05/30",
+            "pattern" : "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
+            "required" : true,
+            "type" : "string"
+         },
+         "winter" : {
+            "default" : "11/30",
+            "pattern" : "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
+            "required" : true,
+            "type" : "string"
+         }
+      },
+      "required" : true,
+      "type" : "object"
+   },
+   "singleton" : true,
+   "version" : "1.01"
 }
