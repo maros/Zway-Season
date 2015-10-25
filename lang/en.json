@@ -1,4 +1,10 @@
 {
-    "title" : "Switch seasons",
-    "description" : "MISSIG"
+    "title" : "Season Switch",
+    "description" : "Switch automatically and manually between seasons. The device created by this module then can be used by other automation tasks to distinguish between seasons.",
+    "season_placeholder" : "MM/DD",
+    "season_helper" : "Season switch date. Leaving this field empty disables this season entirely.",
+    "winter_label" : "Winter",
+    "autumn_label" : "Autumn",
+    "spring_label" : "Spring",
+    "summer_label" : "Summer"
 }

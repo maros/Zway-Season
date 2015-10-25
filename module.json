@@ -49,22 +49,22 @@
             "spring": {
                 "label": "__spring_label__",
                 "placeholder": "__season_placeholder__",
-                "helper": "__spring_helper__"
+                "helper": "__season_helper__"
             },
             "summer": {
                 "label": "__summer_label__",
                 "placeholder": "__season_placeholder__",
-                "helper": "__summer_helper__"
+                "helper": "__season_helper__"
             },
             "autumn": {
                 "label": "__autumn_label__",
                 "placeholder": "__season_placeholder__",
-                "helper": "__autumn_helper__"
+                "helper": "__season_helper__"
             },
             "winter": {
                 "label": "__winter_label__",
                 "placeholder": "__season_placeholder__",
-                "helper": "__winter_helper__"
+                "helper": "__season_helper__"
             }
         }
     }
