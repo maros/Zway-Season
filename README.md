@@ -1,18 +1,26 @@
 # Zway-Season
 
-TODO
+Creates a virtual device that stores and sets the current season. The device
+can be used by other modules to determine the current season
 
 # Configuration
 
-TODO
+## spring, summer, autumn, winter
+
+Stores the date when seasons should be switched. Leaving a date empty results
+in the season being skipped.
 
 # Events
 
-TODO
+* season.spring
+* season.summer
+* season.autumn
+* season.winter
 
 # Virtual Devices
 
-TODO
+Creates a virtual device that shows the current season. The next season
+can be activated ahead of time by pushing the control button.
 
 # License
 
