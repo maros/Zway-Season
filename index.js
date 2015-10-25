@@ -15,7 +15,7 @@ function Season (id, controller) {
     Season.super_.call(this, id, controller);
     
     this.vDev           = undefined;
-    this.seasonDates    = {};
+    this.seasonDates    = [];
 }
 
 inherits(Season, AutomationModule);
@@ -30,16 +30,14 @@ Season.prototype.init = function (config) {
     Season.super_.prototype.init.call(this, config);
 
     var self = this;
-    var langFile = self.controller.loadModuleLang("Season");
 
     // Create vdev
     this.vDev = this.controller.devices.create({
         deviceId: "Season_" + this.id,
         defaults: {
             metrics: {
-                title: langFile.title,
-                level: 'off',
-                season: 'none'
+                title: 'Season',
+                level: 'none'
             }
         },
         overlay: {
@@ -47,8 +45,7 @@ Season.prototype.init = function (config) {
         },
         handler: function(command) {
             if (command === 'on') {
-                self.vDev.set('metrics:level','on');
-                self.switchSeason(self.nextSeason());
+                self.switchSeason(self.nextSeason().season);
             }
         },
         moduleId: this.id
@@ -57,31 +54,14 @@ Season.prototype.init = function (config) {
     self.calculateSeasonDates();
     
     // Initial season
-    /*
-    if (this.vDev.get('metrics:season') === 'none') {
-        self.switchSeason(
-            _.find(
-                self.seasonsDates, 
-                function(season) {
-                    return season.current
-                }
-            )
-        );
+    if (this.vDev.get('metrics:level') === 'none') {
+        var currentSeason = _.find(self.seasonDates,function(season,season2) {
+            return season.current;
+        });
+        self.switchSeason(currentSeason.season);
+    } else {
+        self.timeoutSeason();
     }
-    */
-    
-    // Next season
-    var nextSeason  = self.nextSeason();
-    var startSeason = self.getSeasonStart(nextSeason);
-    
-    say('[Season] Next season is'+nextSeason);
-    say('[Season] Next season is'+startSeason);
-    self.nextSeason = setTimeout(
-        _.bind(self.switchSeason,self,nextSeason),
-        startSeason
-    )
-    */
-
 };
 
 Season.prototype.stop = function () {
@@ -92,7 +72,9 @@ Season.prototype.stop = function () {
         self.vDev = undefined;
     }
     
-    clearTimeout(self.nextSeason);
+    clearTimeout(self.timeout);
+    self.timeout = undefined;
+    
     Season.super_.prototype.stop.call(this);
 };
 
@@ -100,37 +82,77 @@ Season.prototype.stop = function () {
 // --- Module methods
 // ----------------------------------------------------------------------------
 
-Season.prototype.seasons = ['spring','summer','fall','winter'];
+Season.prototype.seasons = ['spring','summer','autumn','winter'];
+
+
+Season.prototype.timeoutSeason = function (season) {
+    var self = this;
+    
+    if (typeof(self.timeout) !== 'undefined') {
+        clearTimeout(self.timeout);
+        self.timeout = undefined;
+    }
+    
+    // Next season
+    var nextSeason = self.nextSeason();
+    
+    if (typeof(nextSeason) !== 'undefined') {
+        var timeout = nextSeason.start.getTime() - (new Date().getTime());
+        if (timeout > 0) {
+            self.timeout = setTimeout(
+                _.bind(self.switchSeason,self,nextSeason.season),
+                timeout
+            );
+        } else {
+            self.switchSeason(nextSeason.season);
+        }
+    }
+};
 
 Season.prototype.switchSeason = function (season) {
     var self = this;
-    console.log('[Season] CALLED SEASON SWITCH '+season);
+    
+    console.log('[Season] Switched season to '+season);
+    var langFile = self.controller.loadModuleLang("Season");
+    
+    self.vDev.set('metrics:level',season);
+    self.vDev.set('metrics:title',langFile[season + '_label']);
+    self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+season+".png");
+    
+    self.controller.emit("season.switch", {
+        source: self.id,
+        season: season
+    });
+    
+    self.controller.emit("season."+season, {
+        source: self.id
+    });
+    
+    self.timeoutSeason();
 };
 
 Season.prototype.nextSeason = function () {
     var self = this;
     
-    var thisSeason  = self.vDev.set('metrics:season');
-    var indexSeason = _.indexOf(self.seasons,thisSeason);
-    var newSeason;
-    while (typeof(newSeason) === 'undefined') {
-        indexSeason++;
-        if (indexSeason > self.seasons.length) {
-            indexSeason = 0;
-        }
-        var seasonStart = self.config[indexSeason];
-        if (typeof(seasonStart) === 'string'
-            && seasonStart !== '') {
-            newSeason = self.seasons[indexSeason];
-        }
+    var thisSeason  = self.vDev.get('metrics:level');
+    var thisIndex   = _.findIndex(self.seasonDates,function(season) {
+        return season.season === thisSeason;
+    });
+    
+    if (thisIndex === -1) {
+        return;
     }
-    return newSeason;
+    
+    thisIndex++;
+    if (thisIndex >= self.seasonDates.length) {
+        thisIndex = 0;
+    }
+    return self.seasonDates[thisIndex];
 };
 
 Season.prototype.calculateSeasonDates = function () {
     var self = this;
     
-    console.log('[Season] Init table');
     var dateNow     = new Date();
     var dateRe      = /^(\d+)\/(\d+)$/;
     var seasons     = [];
@@ -171,45 +193,13 @@ Season.prototype.calculateSeasonDates = function () {
             season.end.setFullYear(season.end.getFullYear() + 1);
         }
         
-        self.seasonDates = { 
+        self.seasonDates.push({
+            season:     season.season,
             start:      season.start,
             end:        season.end,
             current:    (season.start < dateNow && dateNow < season.end)
-        };
+        });
     });
     
-    console.logJS(self.seasonDates);
+    return self.seasonDates;
 };
-
-/*
-Season.prototype.calculateSeason = function () {
-    var self = this;
-    
-    var seasons     = {};
-    var calcSeason;
-    
-    _.each(self.seasons,function(season) {
-        var seasonStart = self.getSeasonPeriod(season);
-        
-        
-        
-        if (typeof(calcSeason) === 'undefined') {
-            if (typeof(seasonStart) !== 'undefined') {
-                
-            }
-            
-            
-        }
-        
-            && typeof(calcSeason) === 'undefined') {
-                && dateNow <= dateCompare) {
-                calcSeason = season;
-                seasons.push(season);
-            }
-        }
-    });
-    
-    return calcSeason;
-};
-
-*/
