@@ -30,7 +30,7 @@
                 "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$",
                 "required": true
             },
-            "fall": {
+            "autumn": {
                 "type": "string",
                 "default": "09/15",
                 "pattern": "^(0*[1-9]|1[012])/(3[01]|[12][0-9]|0*[1-9])$"
@@ -56,10 +56,10 @@
                 "placeholder": "__season_placeholder__",
                 "helper": "__summer_helper__"
             },
-            "fall": {
-                "label": "__fall_label__",
+            "autumn": {
+                "label": "__autumn_label__",
                 "placeholder": "__season_placeholder__",
-                "helper": "__fall_helper__"
+                "helper": "__autumn_helper__"
             },
             "winter": {
                 "label": "__winter_label__",
