@@ -12,6 +12,8 @@ in the season being skipped.
 
 # Events
 
+Events are emitted whenever a season switch occurs
+
 * season.spring
 * season.summer
 * season.autumn
