@@ -120,14 +120,9 @@ Season.prototype.switchSeason = function (season) {
     self.vDev.set('metrics:title',self.langFile[season + '_label']);
     self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+season+".png");
     
-    self.controller.emit("season.switch", {
-        source: self.id,
-        season: season
-    });
+    self.controller.emit("season.switch", season);
     
-    self.controller.emit("season."+season, {
-        source: self.id
-    });
+    self.controller.emit("season."+season);
     
     self.timeoutSeason();
 };
