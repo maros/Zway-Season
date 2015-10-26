@@ -3,7 +3,7 @@
 Version: 1.01
 (c) Maroš Kollár, 2015
 -----------------------------------------------------------------------------
-Author: maros@k-1.com <maros@k-1.com>
+Author: Maroš Kollár <maros@k-1.com>
 Description:
     This module sets the current season. Season may be used as input by other
     modules.
@@ -111,18 +111,26 @@ Season.prototype.timeoutSeason = function (season) {
     }
 };
 
-Season.prototype.switchSeason = function (season) {
+Season.prototype.switchSeason = function (newSeason) {
     var self = this;
     
-    console.log('[Season] Switched season to '+season);
+    console.log('[Season] Switched season to '+newSeason);
     
-    self.vDev.set('metrics:level',season);
-    self.vDev.set('metrics:title',self.langFile[season + '_label']);
-    self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+season+".png");
+    var oldSeason = self.vDev.get('metrics:level');
     
-    self.controller.emit("season.switch", season);
+    self.vDev.set('metrics:level',newSeason);
+    self.vDev.set('metrics:title',self.langFile[newSeason + '_label']);
+    self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+newSeason+".png");
     
-    self.controller.emit("season."+season);
+    if (oldSeason !== newSeason) {
+        self.controller.emit("season.switch", newSeason);
+        self.controller.emit("season."+newSeason);
+        
+        var notification = self.langFile;
+        notification.replace("[OLD_SEASON]", self.langFile[oldSeason + '_label']);
+        notification.replace("[NEW_SEASON]", self.langFile[newSeason + '_label']);
+        self.controller.addNotification("notification",notification, "module", "Season");
+    }
     
     self.timeoutSeason();
 };

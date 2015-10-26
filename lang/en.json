@@ -6,5 +6,6 @@
     "winter_label" : "Winter",
     "autumn_label" : "Autumn",
     "spring_label" : "Spring",
-    "summer_label" : "Summer"
+    "summer_label" : "Summer",
+    "notification" : "Switched season from [OLD_SEASON] to [NEW_SEASON]"
 }
