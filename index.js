@@ -30,6 +30,7 @@ Season.prototype.init = function (config) {
     Season.super_.prototype.init.call(this, config);
 
     var self = this;
+    self.langFile = self.controller.loadModuleLang("Season");
 
     // Create vdev
     this.vDev = this.controller.devices.create({
@@ -37,6 +38,7 @@ Season.prototype.init = function (config) {
         defaults: {
             metrics: {
                 title: 'Season',
+                title: self.langFile.title,
                 level: 'none'
             }
         },
@@ -113,10 +115,9 @@ Season.prototype.switchSeason = function (season) {
     var self = this;
     
     console.log('[Season] Switched season to '+season);
-    var langFile = self.controller.loadModuleLang("Season");
     
     self.vDev.set('metrics:level',season);
-    self.vDev.set('metrics:title',langFile[season + '_label']);
+    self.vDev.set('metrics:title',self.langFile[season + '_label']);
     self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+season+".png");
     
     self.controller.emit("season.switch", {
