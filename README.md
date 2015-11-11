@@ -1,7 +1,7 @@
 # Zway-Season
 
 Creates a virtual device that stores and sets the current season. The device
-can be used by other modules to determine the current season
+can be used by other modules to determine the current season.
 
 # Configuration
 
@@ -18,7 +18,6 @@ Events are emitted whenever a season switch occurs
 * season.summer
 * season.autumn
 * season.winter
-* season.switch (with season as first param)
 
 # Virtual Devices
 
