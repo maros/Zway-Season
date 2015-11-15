@@ -15,26 +15,26 @@
          "autumn" : {
             "helper" : "__season_helper__",
             "label" : "__autumn_label__",
-            "placeholder" : "__season_placeholder__",
-            "order": 3
+            "order" : 3,
+            "placeholder" : "__season_placeholder__"
          },
          "spring" : {
             "helper" : "__season_helper__",
             "label" : "__spring_label__",
-            "placeholder" : "__season_placeholder__",
-            "order": 1
+            "order" : 1,
+            "placeholder" : "__season_placeholder__"
          },
          "summer" : {
             "helper" : "__season_helper__",
             "label" : "__summer_label__",
-            "placeholder" : "__season_placeholder__",
-            "order": 2
+            "order" : 2,
+            "placeholder" : "__season_placeholder__"
          },
          "winter" : {
             "helper" : "__season_helper__",
             "label" : "__winter_label__",
-            "placeholder" : "__season_placeholder__",
-            "order": 4
+            "order" : 4,
+            "placeholder" : "__season_placeholder__"
          }
       }
    },
@@ -71,5 +71,5 @@
       "type" : "object"
    },
    "singleton" : true,
-   "version" : "1.01"
+   "version" : "1.02"
 }
