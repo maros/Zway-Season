@@ -37,12 +37,12 @@ Season.prototype.init = function (config) {
         deviceId: "Season_" + this.id,
         defaults: {
             metrics: {
-                probeTitle: 'Season',
                 title: self.langFile.title,
                 level: 'none'
             }
         },
         overlay: {
+            probeType: 'Season',
             deviceType: 'toggleButton'
         },
         handler: function(command) {
