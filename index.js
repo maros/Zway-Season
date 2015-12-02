@@ -171,7 +171,7 @@ Season.prototype.calculateSeasonDates = function () {
                     season: season,
                     month: match[0],
                     day: match[1],
-                    start: new Date(dateNow.getFullYear(), parseInt(match[0]), parseInt(match[1]), 0, 0, 0, 0),
+                    start: new Date(dateNow.getFullYear(), parseInt(match[0],10), parseInt(match[1],10), 0, 0, 0, 0),
                     end: undefined
                 });
             }
