@@ -1,0 +1,11 @@
+{
+    "title" : "Jahreszeiten Schalter",
+    "description" : "Schaltet entweder automatisch oder manuell zischen den einzelnen Jahreszeiten. Legt ein virtuelles Gerät an, dass von anderen Automatisierungs Modulen ausgelesen werden kann wenn zwischen Jahreszeiten unterschieden werden soll..",
+    "season_placeholder" : "MM/TT",
+    "season_helper" : "Automatisches Umschalt Datum. Wenn dieses Feld nicht ausgefüllt wird, steht diese Jahreszeit nicht zur Auswahl.",
+    "winter_label" : "Winter",
+    "autumn_label" : "Herbst",
+    "spring_label" : "Frühling",
+    "summer_label" : "Sommer",
+    "notification" : "Jahreszeit von [OLD_SEASON] auf [NEW_SEASON] geändert"
+}
