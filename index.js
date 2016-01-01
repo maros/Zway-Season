@@ -55,6 +55,8 @@ Season.prototype.init = function (config) {
     
     self.calculateSeasonDates();
     
+    self.controller.on('season.switch',_.bind(self.switchSeason,self));
+    
     // Initial season
     if (this.vDev.get('metrics:level') === 'none') {
         var currentSeason = _.find(self.seasonDates,function(season,season2) {
@@ -74,8 +76,8 @@ Season.prototype.stop = function () {
         self.vDev = undefined;
     }
     
-    clearTimeout(self.timeout);
-    self.timeout = undefined;
+    self.controller.off('season.switch');
+    self.controller.emit("cron.removeTask","season.switch");
     
     Season.super_.prototype.stop.call(this);
 };
@@ -86,25 +88,23 @@ Season.prototype.stop = function () {
 
 Season.prototype.seasons = ['spring','summer','autumn','winter'];
 
-
 Season.prototype.timeoutSeason = function (season) {
     var self = this;
     
-    if (typeof(self.timeout) !== 'undefined') {
-        clearTimeout(self.timeout);
-        self.timeout = undefined;
-    }
-    
     // Next season
-    var nextSeason = self.nextSeason();
+    var nextSeason  = self.nextSeason();
+    var now         = new Date();
     
     if (typeof(nextSeason) !== 'undefined') {
-        var timeout = nextSeason.start.getTime() - (new Date().getTime());
-        if (timeout > 0) {
-            self.timeout = setTimeout(
-                _.bind(self.switchSeason,self,nextSeason.season),
-                timeout
-            );
+        if (nextSeason.start > now) {
+            console.log('[Season] Add cron for '+nextSeason.start);
+            self.controller.emit("cron.addTask","Season.switch", {
+                minute:     0,
+                hour:       0,
+                weekDay:    null,
+                day:        nextSeason.start.getDate(),
+                month:      nextSeason.start.getMonth()+1
+            },nextSeason.season);
         } else {
             self.switchSeason(nextSeason.season);
         }
@@ -123,7 +123,7 @@ Season.prototype.switchSeason = function (newSeason) {
     self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+newSeason+".png");
     
     if (oldSeason !== newSeason) {
-        self.controller.emit("season.switch", newSeason);
+        self.controller.emit("cron.removeTask","season.switch");
         self.controller.emit("season."+newSeason);
         
         var notification = self.langFile;
