@@ -37,7 +37,7 @@ Season.prototype.init = function (config) {
         deviceId: "Season_" + this.id,
         defaults: {
             metrics: {
-                title: self.langFile.title,
+                title: self.langFile.m_title,
                 level: 'none'
             }
         },
