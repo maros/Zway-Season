@@ -1,3 +1,8 @@
+1.04 2016 Jan 08, Fri
+    * Rename title/description key to make module work in appstore
+    * Use cron instead of timeouts to switch seasons
+    * Update homepage and readme
+
 1.03 2015 Dec 29, Tue
     * German translation
     * cleanup jshint issues
