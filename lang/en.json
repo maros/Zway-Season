@@ -1,11 +1,11 @@
 {
-    "m_title" : "Season Switch",
-    "m_descr" : "Switch automatically and manually between seasons. The device created by this module then can be used by other automation tasks to distinguish between seasons.",
-    "season_placeholder" : "MM/DD",
-    "season_helper" : "Season switch date. Leaving this field empty disables this season entirely.",
-    "winter_label" : "Winter",
-    "autumn_label" : "Autumn",
-    "spring_label" : "Spring",
-    "summer_label" : "Summer",
-    "notification" : "Switched season from [OLD_SEASON] to [NEW_SEASON]"
+   "autumn_label" : "Autumn",
+   "m_descr" : "Switch automatically and manually between seasons. The device created by this module then can be used by other automation tasks to distinguish between seasons.\nCheck https://github.com/maros/Zway-Season//blob/master/README.md for detailed documentation.",
+   "m_title" : "Season Switch",
+   "notification" : "Switched season from [OLD_SEASON] to [NEW_SEASON]",
+   "season_helper" : "Season switch date. Leaving this field empty disables this season entirely.",
+   "season_placeholder" : "MM/DD",
+   "spring_label" : "Spring",
+   "summer_label" : "Summer",
+   "winter_label" : "Winter"
 }

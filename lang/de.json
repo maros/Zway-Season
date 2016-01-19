@@ -1,11 +1,11 @@
 {
-    "m_title" : "Jahreszeiten Schalter",
-    "m_descr" : "Schaltet entweder automatisch oder manuell zischen den einzelnen Jahreszeiten. Legt ein virtuelles Gerät an, dass von anderen Automatisierungs Modulen ausgelesen werden kann wenn zwischen Jahreszeiten unterschieden werden soll..",
-    "season_placeholder" : "MM/TT",
-    "season_helper" : "Automatisches Umschalt Datum. Wenn dieses Feld nicht ausgefüllt wird, steht diese Jahreszeit nicht zur Auswahl.",
-    "winter_label" : "Winter",
-    "autumn_label" : "Herbst",
-    "spring_label" : "Frühling",
-    "summer_label" : "Sommer",
-    "notification" : "Jahreszeit von [OLD_SEASON] auf [NEW_SEASON] geändert"
+   "autumn_label" : "Herbst",
+   "m_descr" : "Schaltet entweder automatisch oder manuell zischen den einzelnen Jahreszeiten. Legt ein virtuelles Gerät an, dass von anderen Automatisierungs Modulen ausgelesen werden kann wenn zwischen Jahreszeiten unterschieden werden soll..\nSiehe https://github.com/maros/Zway-Season//blob/master/README.md für detailliertere Dokumentation.",
+   "m_title" : "Jahreszeiten Schalter",
+   "notification" : "Jahreszeit von [OLD_SEASON] auf [NEW_SEASON] geändert",
+   "season_helper" : "Automatisches Umschalt Datum. Wenn dieses Feld nicht ausgefüllt wird, steht diese Jahreszeit nicht zur Auswahl.",
+   "season_placeholder" : "MM/TT",
+   "spring_label" : "Frühling",
+   "summer_label" : "Sommer",
+   "winter_label" : "Winter"
 }
