@@ -5,7 +5,7 @@
       "description" : "__m_descr__",
       "title" : "__m_title__"
    },
-   "dependencies" : [],
+   "dependencies" : ["Cron"],
    "homepage" : "https://github.com/maros/Zway-Season/",
    "icon" : "icon.png",
    "maturity" : "stable",
