@@ -27,13 +27,13 @@ can be activated ahead of time by pushing the control button.
 # Installation
 
 ```shell
-cd /opt/z-way-server/automation/modules
+cd /opt/z-way-server/automation/userModules
 git clone https://github.com/maros/Zway-Season.git Season --branch latest
 ```
 
 To update or install a specific version
 ```shell
-cd /opt/z-way-server/automation/modules/Season
+cd /opt/z-way-server/automation/userModules/Season
 git fetch --tags
 # For latest released version
 git checkout tags/latest
