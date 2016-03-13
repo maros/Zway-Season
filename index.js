@@ -120,7 +120,7 @@ Season.prototype.switchSeason = function (newSeason) {
     
     self.vDev.set('metrics:level',newSeason);
     self.vDev.set('metrics:title',self.langFile[newSeason + '_label']);
-    self.vDev.set('metrics:icon',"/ZAutomation/api/v1/load/modulemedia/Season/icon_"+newSeason+".png");
+    self.vDev.set('metrics:icon',self.imagePath+"/icon_"+newSeason+".png");
     
     if (oldSeason !== newSeason) {
         self.controller.emit("cron.removeTask","season.switch");
