@@ -42,7 +42,7 @@ Season.prototype.init = function (config) {
             }
         },
         overlay: {
-            probeType: 'Season',
+            probeType: 'season',
             deviceType: 'toggleButton'
         },
         handler: function(command) {
